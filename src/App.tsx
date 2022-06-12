@@ -1,4 +1,5 @@
 import React from 'react';
+import './reset.css';
 import './App.css';
 
 function App() {
@@ -14,9 +15,30 @@ function App() {
 					</p>
 				</div>
 			</section>
-			<div id='effect'></div>
+			{/* <div id='effect'></div> */}
+
+			<section id='progress'>
+				<div>
+					<BossIcon />
+					<BossIcon />
+					<BossIcon />
+					<BossIcon />
+					<BossIcon />
+					<BossIcon />
+					<BossIcon />
+					<BossIcon />
+				</div>
+			</section>
 		</div>
 	);
 }
 
 export default App;
+
+const BossIcon: React.FC<{ source?: string }> = ({
+	source = '/uldir-boss1.jpg',
+}) => (
+	<div className='boss-card'>
+		<img src={source} />
+	</div>
+);
