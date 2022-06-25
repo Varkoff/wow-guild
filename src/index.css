@@ -1,8 +1,15 @@
 html,
 body {
 	min-height: 100%;
-	font-size: 1.05rem;
 }
+
+body {
+	--primary: 200 150 0;
+	font-size: 1.05rem;
+	background-color: rgb(var(--primary) / 0.1);
+	padding: 12px 24px;
+}
+
 body {
 	height: 100%;
 	margin: 0;
@@ -16,26 +23,6 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
-}
-
-section#welcome {
-	width: 100%;
-	/* background-color: rgb(30 30 30); */
-	color: black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	min-height: 400px;
-}
-
-section#welcome div {
-	width: 100%;
-	max-width: 800px;
-	background-color: white;
-	border-radius: 24px;
-	padding: 8px 24px;
-	height: 100%;
 }
 
 #effect {
@@ -90,28 +77,44 @@ section#welcome div {
 	}
 }
 
-section#progress {
+#welcome-wrapper,
+#progress-wrapper,
+#goals-wrapper {
+	line-height: 2.25rem;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 24px 0px;
 }
 
-section#progress > div {
+h1 {
+	color: rgb(var(--primary));
+	margin-bottom: 24px;
+}
+
+#progress-inner,
+#goals-inner,
+#welcome-inner {
 	width: 100%;
 	max-width: 800px;
 	background-color: white;
 	border-radius: 24px;
-	padding: 36px 24px;
+
+	padding: 28px 24px;
+}
+
+#progress {
 	height: 100%;
 	display: grid;
 	justify-content: center;
 	align-items: center;
 	gap: 24px;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .boss-card {
+	position: relative;
 	margin: auto;
 	--shadow-color: 200 150 0;
 	box-shadow: 0 8px 16px -4px rgb(var(--shadow-color) / 0.6),
@@ -119,17 +122,42 @@ section#progress > div {
 
 	border-radius: 12px;
 	overflow: hidden;
-	width: 220px;
+	width: 100%;
 	height: auto;
 }
 
-.boss-card img {
-	/* width: 220px; */
-	/* height: auto; */
-	object-fit: fill;
+.boss-name {
+	position: absolute;
+	color: white;
+	text-shadow: 0 0 8px rgb(var(--shadow-color) / 0.6);
+	font-size: clamp(1.1rem, 6vw, 1.5rem);
+	bottom: 12px;
+	left: 12px;
+	right: 0;
 }
 
-.App {
-	padding: 12px 24px;
-	background-color: rgb(230, 230, 235);
+.boss-details {
+	opacity: 0;
+	position: absolute;
+	color: green;
+	right: 12px;
+	top: 6px;
+	width: 24px;
+}
+
+.boss-card:hover .boss-details {
+	opacity: 1;
+}
+
+.boss-card:hover .boss-name {
+	color: rgb(var(--primary));
+	text-shadow: 0 0 12px black;
+}
+
+.boss-details img:hover {
+	cursor: pointer;
+}
+
+.boss-details img {
+	width: 100%;
 }
