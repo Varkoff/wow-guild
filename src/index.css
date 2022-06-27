@@ -1,21 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;600;00&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap');
 html,
 body {
 	min-height: 100%;
 }
 
 body {
-	--primary: 200 150 0;
-	font-size: 1.05rem;
+	--primary: 150 100 0;
+	--transition: all 0.2s ease-in-out;
+	font-size: 1.25rem;
 	background-color: rgb(var(--primary) / 0.1);
-	padding: 12px 24px;
-}
+	/* padding: 12px 24px; */
 
-body {
 	height: 100%;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
+	font-family: 'Work Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -25,16 +24,20 @@ code {
 		monospace;
 }
 
+/* Effect */
 #effect {
+	z-index: 1022;
 	position: relative;
 	width: 100%;
 	height: 100%;
 	min-height: 400px;
+	top: -260px;
 	overflow: hidden;
 	animation: reduceOpacity 1s ease-out;
 	animation-iteration-count: infinite;
 	transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
 }
+
 @keyframes reduceOpacity {
 	0% {
 		opacity: 1;
@@ -49,7 +52,7 @@ code {
 }
 
 #effect::before {
-	outline: 1px solid red;
+	z-index: 10;
 	overflow: visible;
 	top: 100px;
 	content: '';
@@ -60,9 +63,9 @@ code {
 	background-size: 2000px;
 	width: 20000px;
 	height: 300px;
-	transition: 0.15s all ease;
+	transition: var(--transition);
 	background-image: url('glow-effect.png');
-	animation: parallax 20s linear;
+	animation: parallax 30s linear;
 	animation-iteration-count: infinite;
 	mask: linear-gradient(to right, black 0%, black 100%);
 }
@@ -79,23 +82,60 @@ code {
 
 #welcome-wrapper,
 #progress-wrapper,
-#goals-wrapper {
-	line-height: 2.25rem;
+#goals-wrapper,
+#offer-wrapper,
+#planning-wrapper {
+	line-height: 2rem;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 24px 0px;
+	padding: 24px;
+}
+
+/* Welcome Section */
+
+#welcome-wrapper {
+	margin: 0px;
+	background: url('/main-image.jpg');
+	background-size: cover;
+	min-height: 100vh;
+	background-attachment: fixed;
+	background-color: rgba(0, 0, 0, 0.75);
+	color: white;
+}
+
+#welcome-inner {
+	background-color: rgb(0 0 0 / 0.3) !important;
+
+	line-height: 2.4rem;
+	backdrop-filter: blur(8px);
+}
+
+#welcome-inner h1 {
+	font-size: 3rem;
+}
+
+#welcome-inner p {
+	font-size: 1.75rem;
+
+	word-spacing: 0.4rem;
 }
 
 h1 {
 	color: rgb(var(--primary));
 	margin-bottom: 24px;
+	font-family: 'Jost', sans-serif;
+	font-weight: 800;
 }
 
 #progress-inner,
 #goals-inner,
-#welcome-inner {
+#welcome-inner,
+#offer-inner,
+#planning-inner {
+	box-shadow: 0px 4px 12px -6px rgba(0, 0, 0, 0.75);
 	width: 100%;
 	max-width: 800px;
 	background-color: white;
@@ -104,39 +144,70 @@ h1 {
 	padding: 28px 24px;
 }
 
+#goals-wrapper {
+	margin-top: -260px;
+}
+
+/* Progress Section */
+#progress-inner .title {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+}
+
+#progress-inner .title span {
+	margin-left: auto;
+	color: white;
+	padding: 4px 12px;
+	font-weight: 800;
+	background-color: rgb(var(--primary));
+	border-radius: 12px;
+}
 #progress {
 	height: 100%;
 	display: grid;
 	justify-content: center;
 	align-items: center;
 	gap: 24px;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .boss-card {
 	position: relative;
 	margin: auto;
 	--shadow-color: 200 150 0;
-	box-shadow: 0 8px 16px -4px rgb(var(--shadow-color) / 0.6),
+	box-shadow: 0 4px 4px -4px rgb(var(--shadow-color) / 0.6),
 		0 4px 6px -4px rgb(var(--shadow-color) / 0.6);
-
+	border: 1x solid rgb(var(--primary));
 	border-radius: 12px;
 	overflow: hidden;
 	width: 100%;
 	height: auto;
+	transition: var(--transition);
+}
+
+.boss-card:hover {
+	transition: var(--transition);
+	box-shadow: 0 8px 16px -4px rgb(var(--shadow-color) / 0.6),
+		0 4px 6px -4px rgb(var(--shadow-color) / 0.6);
 }
 
 .boss-name {
+	transition: var(--transition);
 	position: absolute;
+	display: flex;
+	justify-content: baseline;
+	align-items: flex-end;
+	inset: 0;
 	color: white;
 	text-shadow: 0 0 8px rgb(var(--shadow-color) / 0.6);
 	font-size: clamp(1.1rem, 6vw, 1.5rem);
 	bottom: 12px;
 	left: 12px;
-	right: 0;
 }
 
 .boss-details {
+	transition: var(--transition);
 	opacity: 0;
 	position: absolute;
 	color: green;
@@ -146,12 +217,16 @@ h1 {
 }
 
 .boss-card:hover .boss-details {
+	transition: var(--transition);
 	opacity: 1;
 }
 
 .boss-card:hover .boss-name {
-	color: rgb(var(--primary));
+	transition: var(--transition);
+	/* color: rgb(var(--primary)); */
 	text-shadow: 0 0 12px black;
+	font-size: 1.75rem;
+	backdrop-filter: blur(2px);
 }
 
 .boss-details img:hover {
@@ -160,4 +235,82 @@ h1 {
 
 .boss-details img {
 	width: 100%;
+}
+
+/* Offers */
+
+#offer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: baseline;
+}
+
+.offer-item {
+	border-radius: 12px;
+	padding: 24px;
+	text-align: center;
+	text-justify: inter-word;
+	gap: 24px;
+	background-color: rgb(var(--primary));
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: min(220px, 100%);
+}
+
+.offer-item img {
+	width: 100%;
+	height: auto;
+}
+
+/* Planning */
+#planning ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+#planning ul li {
+	margin: 0;
+	display: flex;
+	gap: 12px;
+	padding-left: 24px;
+}
+
+.badge-raid,
+.badge-dungeon,
+.badge-pvp,
+.badge-transmog {
+	padding: 4px 12px;
+	font-weight: 800;
+	border-radius: 9999px;
+	color: white;
+}
+
+.badge-raid {
+	background-color: purple;
+}
+
+.badge-dungeon {
+	background-color: darkblue;
+}
+
+.badge-pvp {
+	background-color: darkgoldenrod;
+}
+.badge-transmog {
+	background-color: darkolivegreen;
+}
+@media (max-width: 550px) {
+	.offer-item {
+		width: 100%;
+	}
 }
