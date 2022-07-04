@@ -6,7 +6,7 @@ body {
 }
 
 body {
-	--primary: 150 100 0;
+	--primary: 250 100 0;
 	--transition: all 0.2s ease-in-out;
 	font-size: 1.25rem;
 	background-color: rgb(var(--primary) / 0.1);
@@ -64,7 +64,7 @@ code {
 	width: 20000px;
 	height: 300px;
 	transition: var(--transition);
-	background-image: url('glow-effect.png');
+	background-image: url('/glow-effect-2.png');
 	animation: parallax 30s linear;
 	animation-iteration-count: infinite;
 	mask: linear-gradient(to right, black 0%, black 100%);
@@ -145,7 +145,7 @@ h1 {
 }
 
 #goals-wrapper {
-	margin-top: -260px;
+	margin-top: -360px;
 }
 
 /* Progress Section */
@@ -282,7 +282,7 @@ h1 {
 	margin: 0;
 	display: flex;
 	gap: 12px;
-	padding-left: 24px;
+	padding-left: 0px;
 }
 
 .badge-raid,
@@ -292,6 +292,7 @@ h1 {
 	padding: 4px 12px;
 	font-weight: 800;
 	border-radius: 9999px;
+	height: fit-content;
 	color: white;
 }
 
@@ -313,4 +314,8 @@ h1 {
 	.offer-item {
 		width: 100%;
 	}
+}
+
+body {
+	color: #966400;
 }
